@@ -1,0 +1,8 @@
+<! DOCTYPE persons
+[
+	<! ELEMENT persons(name, phone, email)>
+	<! ELEMENT name(#PCDATA)>
+	<! ELEMENT phone(#PCDATA)>
+	<! ELEMENT email(#PCDATA)>
+]
+>

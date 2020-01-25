@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<persons>
+
+	<person>
+		<name>John</name>
+		<phone>+91 99999 11111</phone>
+		<email>john@example.com</email>
+	</person>
+	
+	<person>
+		<name>Fionna</name>
+		<phone>+91 99999 44444</phone>
+		<email>fionna@example.com</email>
+	</person>
+	
+</persons>
