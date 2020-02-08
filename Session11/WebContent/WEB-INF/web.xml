@@ -15,4 +15,24 @@
   	<url-pattern>/Awesome</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>YourServlet</servlet-name>
+  	<servlet-class>co.edureka.controller.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>YourServlet</servlet-name>
+  	<url-pattern>/Log</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>MyFilter</filter-name>
+  	<filter-class>co.edureka.controller.AuthFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>MyFilter</filter-name>
+  	<url-pattern>/Log</url-pattern>
+  </filter-mapping>
+  
 </web-app>
