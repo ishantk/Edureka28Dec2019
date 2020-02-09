@@ -17,6 +17,12 @@
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">10</property>
 
+		<!-- For JDBC Batch Execution max limit as of now is 100 -->
+		<property name="hibernate.jdbc.batch_size">100</property>
+		
+		<!-- Query Cache in Hibernate -->
+		<!-- <property name="hibernate.cache.use_query_cache">true</property> -->
+
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
@@ -30,8 +36,14 @@
         <!-- update: if table exists, update the data in the same table rather than re-creating it -->
         <property name="hbm2ddl.auto">update</property>
 
-        <!-- <mapping resource="employee.hbm.xml"/> -->
-        <mapping class="co.edureka.model.Employee"/>
+        <mapping resource="employee.hbm.xml"/>
+        
+        <!-- For Annotations -->
+        <!-- <mapping class="co.edureka.model.Employee"/> -->	
+        
+        <!-- <mapping resource="onetoone.hbm.xml"/> -->
+        <!-- <mapping resource="onetomany.hbm.xml"/> -->
+        <!-- <mapping resource="inheritance.hbm.xml"/> -->
 
     </session-factory>
 

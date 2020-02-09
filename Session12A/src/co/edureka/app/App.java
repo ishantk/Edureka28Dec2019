@@ -17,7 +17,7 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		Employee emp1 = new Employee(null, "Mike", "mike@example.com", 40000);
+		/*Employee emp1 = new Employee(null, "Mike", "mike@example.com", 40000);
 		
 		Employee emp2 = new Employee();
 		emp2.setEid(null);
@@ -26,7 +26,7 @@ public class App {
 		emp2.setSalary(50000);
 
 		System.out.println(emp1);
-		System.out.println(emp2);
+		System.out.println(emp2);*/
 		
 		// Objects Created are Temporary in the RAM
 		// Data shall be persisted in DataBase
@@ -69,16 +69,23 @@ public class App {
 			
 			// obtain session
 			session = sessionFactory.openSession();
+			//session1 = sessionFactory.openSession(); // We can open multiple sessions and maintain the cache
 			
 			// obtain transaction
 			transaction = session.getTransaction();
 			transaction.begin();
 			
 			// 1. Insert Data Into Table
-			session.save(emp1);
-			session.save(emp2);
-			System.out.println(">> "+emp1.getName()+" Saved in DataBase :) ");
-			System.out.println(">> "+emp2.getName()+" Saved in DataBase :) ");
+			//session.save(emp1);
+			//session.save(emp2);
+			//System.out.println(">> "+emp1.getName()+" Saved in DataBase :) ");
+			//System.out.println(">> "+emp2.getName()+" Saved in DataBase :) ");
+			
+			/*for (int i=1;i<=100;i++) {
+				Employee employee = new Employee(null, "Employee"+i, "employee"+i+"@example.com", 30000+i);
+				session.save(employee);
+			}*/ 	// Whenever transaction shall be committed it will be a batch of 100 insert statements :)
+
 			
 			/*
 			// 2. Get Single Record from DataBase
@@ -122,8 +129,31 @@ public class App {
 				System.out.println(employee);
 			}*/
 			
+			// Cache in Hibernate
+			// Reading the data from Database with get method of hibernate Session Object
+			Employee e1 = session.get(Employee.class, 1);
+			Employee e2 = session.get(Employee.class, 4);
+			
+			System.out.println(e1);
+			System.out.println(e2);
+			
+			System.out.println(">> Re-Reading the same objects");
+			
+			Employee e3 = session.get(Employee.class, 1);
+			Employee e4 = session.get(Employee.class, 4);
+			
+			System.out.println(e3);
+			System.out.println(e4);
+			
+			
 			transaction.commit();
 			System.out.println(">> Transaction Finished :) ");
+			
+			// Till time we dont close the session, fetched data will be maintained in it :)
+			//session.close();
+			
+			// Next Level of Cache shall be maintained at SessionFactor Level
+			//sessionFactory.close();
 			
 		} catch (Exception e) {
 			System.out.println(">> Some Exception: "+e);
