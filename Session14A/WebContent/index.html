@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Search</title>
+
+<script type="text/javascript">
+	
+	var request;
+	
+	function sendData(){
+		var data = document.searchForm.txtData.value;
+		var url = "search.jsp?data="+data;
+		request = new XMLHttpRequest();
+		
+		try{
+			request.onreadystatechange = fetchResults;
+			request.open("GET", url, true);
+			request.send();
+		}catch(e){
+			alert("Something Went Wrong !!");
+		}
+	}
+	
+	function fetchResults(){
+		if(request.readyState == 4){
+			var res = request.responseText;
+			document.getElementById("results").innerHTML = res;
+		}
+	}
+
+</script>
+
+</head>
+<body>
+
+	<center>
+		<br/><br/><br/><br/>
+		<h3>Welcome to our Employee Search</h3>
+		
+		<form name="searchForm">
+			<input type="text" name="txtData" placeholder="eg:John" onkeyup="sendData()"/>
+		</form>
+
+		<h4>Search Results</h4>
+		<span id="results">
+		
+		</span>
+	</center>
+
+</body>
+</html>
